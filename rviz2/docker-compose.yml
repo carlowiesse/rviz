@@ -1,0 +1,18 @@
+version: "2.3"
+
+services:
+  rviz:
+    # user: wsl-root # WSL2
+    image: carlowiesse/rviz2:humble
+    # command: glxinfo -B # Check renderer (GPU or CPU)
+    # devices: # WSL2
+    #   - '/dev/dxg:/dev/dxg' # WSL2
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      # - /usr/lib/wsl:/usr/lib/wsl # WSL2
+      # - /mnt/wslg:/mnt/wslg # WSL2
+    environment:
+      - DISPLAY=$DISPLAY
+      # - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+      # - LD_LIBRARY_PATH=/usr/lib/wsl/lib # WSL2
+      # - MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA # WSL2

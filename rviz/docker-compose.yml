@@ -1,0 +1,33 @@
+version: "2.3"
+
+networks:
+  ros-network:
+    driver: bridge
+
+services:
+  roscore:
+    image: ros:noetic
+    command: roscore
+    networks:
+      - ros-network
+    
+  rviz:
+    # user: wsl-root # WSL2
+    image: carlowiesse/rviz:noetic
+    # command: glxinfo -B # Check renderer (GPU or CPU)
+    # devices: # WSL2
+    #   - '/dev/dxg:/dev/dxg' # WSL2
+    depends_on:
+      - roscore
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      # - /usr/lib/wsl:/usr/lib/wsl # WSL2
+      # - /mnt/wslg:/mnt/wslg # WSL2
+    environment:
+      - DISPLAY=$DISPLAY
+      - ROS_MASTER_URI=http://roscore:11311
+      # - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+      # - LD_LIBRARY_PATH=/usr/lib/wsl/lib # WSL2
+      # - MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA # WSL2
+    networks:
+      - ros-network
