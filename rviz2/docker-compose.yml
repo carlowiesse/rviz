@@ -3,7 +3,7 @@ version: "2.3"
 services:
   rviz:
     # user: wsl-root # WSL2
-    image: carlowiesse/rviz2:humble
+    image: carlowiesse/rviz:humble
     # command: glxinfo -B # Check renderer (GPU or CPU)
     # devices: # WSL2
     #   - '/dev/dxg:/dev/dxg' # WSL2
